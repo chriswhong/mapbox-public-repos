@@ -1,0 +1,17 @@
+{
+  "name": "mapbox-github-viz",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "github.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "moment": "^2.29.4",
+    "octokit": "^2.0.7"
+  }
+}
