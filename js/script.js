@@ -1,6 +1,6 @@
 // import mapboxItems from "./mapboxItems.js";
 (async function () {
-  const data = await fetch("./data/public-repos.json").then((response) =>
+  const data = await fetch("./data/public-repos-with-last-commit.json").then((response) =>
     response.json()
   );
 
@@ -14,7 +14,7 @@
   });
 
   // add a column for every 112 px of width past 560
-  const MINWIDTH = 200;
+  const MINWIDTH = 1000;
   const PIXELS_PER_COLUMN = 100;
   function resizeGrid() {
     let width = document.body.clientWidth;
@@ -68,14 +68,21 @@
         <a href=${html_url} target="_blank"> 
         <div class="flip-card grid-stack-item-content-inner tile">
             <div class="flip-card-inner">
-                <div class="flip-card-front category-${
+                <div class="flip-card-front text-center items-center flex flex-col justify-center p-3 box-border bg-slate-300	font-bold category-${
                   language ? language.toLowerCase() : "null"
                 }">
-                    ${name} ${stargazers_count}
+                    <div class='absolute left-2 top-2 font-light bg-white rounded-full px-2 font-sans text-xs'>
+                      <i class="fa-regular fa-star mr-1"></i>${numeral(stargazers_count).format('0,0')}
+                    </div>
+                    ${name} 
+                    <div class='absolute left-2 bottom-2 font-light bg-white rounded-full px-2 font-sans text-xs'>
+                    <i class="fa-solid fa-circle mr-1" style="width:8px;color:${color};"></i>${language}
+                    </div>
                 </div>
-                <div class="flip-card-back category-${
+                <div class="flip-card-back text-center items-center flex flex-col justify-center p-3 box-border text-gray-700 border-4 border-solid bg-white font-medium text-xs category-${
                   language ? language.toLowerCase() : "null"
-                }">
+                }" style="transform: rotateX(180deg);"
+                >
                     <div class="flip-card-back-inner">
                         ${description}
                     </div>

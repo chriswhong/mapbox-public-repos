@@ -6,10 +6,8 @@ import fs from "fs";
 dotenv.config();
 
 const octokit = new Octokit({
-//   auth: process.env.GITHUB_ACCESS_TOKEN,
+  auth: process.env.GITHUB_ACCESS_TOKEN,
 });
-
-const twoYearsAgoMoment = moment().subtract(2, "years");
 
 const repos = await octokit.paginate(
   "GET /orgs/{org}/repos",
@@ -20,10 +18,6 @@ const repos = await octokit.paginate(
   },
   (response) =>
     response.data
-      .filter((d) => {
-        twoYearsAgoMoment;
-        return moment(d.pushed_at).isAfter(twoYearsAgoMoment);
-      })
       .map(
         ({
           name,
